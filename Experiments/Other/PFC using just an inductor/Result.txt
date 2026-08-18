@@ -1,0 +1,1 @@
+It is seen that even mH range inductors make barely noticable difference at this current level. Selecting hundereds of mH inductor is impractical therefore using solely an inductor for PFC option is eliminated.

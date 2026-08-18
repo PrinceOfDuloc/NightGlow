@@ -1,0 +1,73 @@
+/* ===============================
+   HEADINGS COLORS & SPACING
+   =============================== */
+
+/* Top-level heading - accent color */
+h1 {
+    color: #B22222;          /* Firebrick Red */
+    margin-top: 2em;
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+
+/* Second-level heading - light blue */
+h2 {
+    color: #4682B4;          /* Steel Blue */
+    margin-top: 1.8em;
+    margin-bottom: 0.9em;
+    font-weight: bold;
+}
+
+/* Third-level heading - darker blue */
+h3 {
+    color: #1E3A5F;          /* Dark Slate Blue */
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    font-weight: bold;
+}
+
+/* Fourth-level heading - even darker blue */
+h4 {
+    color: #0D1B33;          /* Very Dark Blue */
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+    font-weight: bold;
+}
+
+.summary-box {
+  border: 2px solid #666;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  overflow: hidden;
+  background: #fafafa;
+}
+
+/* First paragraph (the bold title) */
+.summary-box > p:first-child {
+  margin: 0;
+  padding: 0.6em 0.9em;
+  background: #efefef;
+  border-bottom: 1px solid #999;
+  font-weight: 500;
+}
+
+/* Body */
+
+.summary-box a {
+    color: inherit;              /* Use normal text color */
+    text-decoration: none;       /* Remove underline */
+    font-weight: inherit;
+}
+
+.summary-box > *:not(:first-child) {
+  padding: 0.9em 1em 1em 1em;
+  margin: 0;
+}
+
+.summary-box a:hover {
+    text-decoration: underline;  /* Optional */
+}
+
+.summary-box a::after {
+    content: " 🔗";
+}

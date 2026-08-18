@@ -1,0 +1,31 @@
+Characteristic when the 68R // 56R = 30.7R RS1 resistor of BP5218 PMIC is replaced with bigger resistors for the preferred low brightness:
+
+
+
+RS1 = 56R:
+V_RMS = 230V (doesn't change)
+I_RMS = 27mA
+Apperant Power = 6.21VA
+Real Power = 4.7W (not sure, forgot to record)
+Pf = 0.75
+
+
+RS1 = 68R:
+V_RMS = 230V (doesn't change)
+I_RMS = 22mA
+Apperant Power = 5.06VA
+Real Power = 3.86W
+Pf = 0.76
+
+RS1 = 100R (final):
+V_RMS = 230V (doesn't change)
+I_RMS = 16.4mA
+Apperant Power = 3.772VA
+Real Power = 3W
+Pf = 0.8
+
+
+
+Note: The test performed after continuously operating the luminaire for several days with its original 30.7 Ω RS1 resistor measured 7 W of real power (41 mA RMS), which differs significantly from the initial measurement of 5.7 W (37 mA RMS). The reason for this variation is unknown.
+
+

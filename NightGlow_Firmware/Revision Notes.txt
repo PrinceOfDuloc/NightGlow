@@ -1,0 +1,2 @@
+RevA vs RevB:
+- RevA dims using a potentiometer, RevB dims using a button.

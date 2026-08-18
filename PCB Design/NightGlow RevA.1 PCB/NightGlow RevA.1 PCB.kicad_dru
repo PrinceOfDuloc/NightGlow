@@ -1,0 +1,4 @@
+(version 1)
+(rule "HIgH cLeArAnce BeTWeen LV And HV neTS"
+	(constraint clearance (min 2.5mm))
+	(condition " A.NetClass == 'HV*' && B.NetClass != 'HV*'" ))

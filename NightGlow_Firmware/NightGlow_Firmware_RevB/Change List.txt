@@ -1,0 +1,2 @@
+- Add brightness to EEPROM adress 6
+- 
