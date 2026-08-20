@@ -1182,7 +1182,7 @@ Measure the voltage drop across *R1* and *R2* during startup to identify which b
 - CH1 (passive probe): Upstream of R1
 - CH2 (passive probe): Downstream of R1
 - F1: R1 current | Formula: `(CH1-CH2)/33`
-- CH4 (differential probe): R2 current | Formula: `9.4 V/A` (50x probe attenuation 470R resistor -> (50/470)^-1 = 9.4)
+- CH4 (differential probe): R2 current — **9.4 V/A** *(50× probe attenuation with a 470 Ω resistor: $(50/470)^{-1}=9.4$)*
 
 
 ![Current Draw of Branches](../Experiments/Extra 2 Overcurrent and Overvoltage Failure Investigation/Ex2.2.1 Current Draw of Branches.png)
@@ -1260,8 +1260,19 @@ During the half-cycle in which LINE is negative with respect to NEUT:
 
 > **Summary:** The current-limiting C2 capacitor and R2 resistor are connected to pin 4 (LINE) of DB2. However, the fault current enters DB2 through pin 3 (NEUT) and exits through DB1 pin 4 (LINE). Therefore, C2 and R2 are completely bypassed by this current path. The 230 V mains voltage is consequently applied across the circuit through only the forward voltage drops of the two bridge-rectifier diode paths and the impedance of the connected circuitry, resulting in a very large current that immediately blows the fuse.
 
-<br>
-**Alternative Design Solutions:**
+
+#### Alternative Design Solutions:{.unlisted}
+
+- **Buck Version of Dickson Charge Pump Topology [Most Practical]:** The negative half-cycle is not actually mandatory for a capacitive dropper to function, as long as the input voltage is continuously varying. Instead of using a separate bridge rectifier for the capacitive dropper, the rectified AC waveform available at the primary bridge rectifier output can be used. To achieve this, the rectified AC and filtered DC nodes shall be separated by a diode. In addition, the +12 V rail shall only draw power and must not supply power back into the buck stage. Therefore, two additional diodes are used to control the charge and discharge paths of the dropper capacitor. The simulation below compares the failed design with the proposed topology:
+
+[![Current Draw of Branches](../Simulation/Cap Dropper with Single Bridge Rectifier/Cap Dropper with Single Bridge Rectifier Simulation Screenshot.png)](../Simulation/Cap Dropper with Single Bridge Rectifier/Cap Dropper with Single Bridge Rectifier Simulation Screenshot.png)
+
+- n008: D12_Cathode
+- n006: D12_Anode (GND of the new topology)
+- n010: D11_Cathode
+- n012: D11_Anode (GND of the old topology)
+
+    The voltage differences $(n008-n006)$ and $(n010-n012)$ shall be compared to evaluate the regulation performance. The two waveforms are similar, verifying the proposed topology in simulation. One notable difference is the required increase in dropper capacitance from *220 nF to 4.7 µF*, corresponding to approximately a *21× increase*. This is not particularly surprising, since the dropper input voltage has a lower peak-to-peak amplitude in the proposed topology and the capacitor discharge no longer contributes to the +12 V rail but instead discharges through the buck converter, leaving only the charging portion to supply the +12 V rail. Fortunately, since the capacitor is only subjected to a single polarity of voltage in this topology, an electrolytic capacitor can be used, making the higher capacitance requirement trivial. Additionally, this is only a crude simulation, so the final capacitance value shall be determined empirically. The inrush-limiting resistor (R1 in the simulation) shall also be carefully determined and may need to be reduced because the effective frequency is doubled, reducing the discharge interval, while the increased capacitance increases the RC time constant.
 
 - **Separate the Ground Connections:** If separate bridge rectifiers are used for the main power supply and the auxiliary/bias supply on the mains side, their DC-side *GND* connections shall not be directly connected. Each bridge rectifier shall maintain its own separate DC return path.
 
